@@ -1,0 +1,57 @@
+<div class="cart-container">
+  <div class="cart-content">
+    <div class="cart-header">
+      <button class="back-btn" routerLink="/" *ngIf="cart.items.length > 0">
+        <span>←</span> Back to Menu
+      </button>
+      <h1>Your Cart</h1>
+    </div>
+    <div class="cart-items" *ngIf="cart.items.length > 0; else emptyCart">
+      <div class="cart-item" *ngFor="let item of cart.items">
+        <div class="item-image">
+          <img [src]="item.food.imageUrl" [alt]="item.food.name">
+        </div>
+        <div class="item-details">
+          <h3>{{item.food.name}}</h3>
+          <p class="item-price">${{item.food.price}}</p>
+        </div>
+        <div class="item-quantity">
+          <button (click)="changeQuantity(item.food.id, item.quantity - 1)" [disabled]="item.quantity <= 1">-</button>
+          <span>{{item.quantity}}</span>
+          <button (click)="changeQuantity(item.food.id, item.quantity + 1)">+</button>
+        </div>
+        <div class="item-total">
+          ${{item.price}}
+        </div>
+        <button class="remove-btn" (click)="removeFromCart(item.food.id)">×</button>
+      </div>
+    </div>
+    <ng-template #emptyCart>
+      <div class="empty-cart">
+        <div class="empty-cart-icon">🛒</div>
+        <h2>Your cart is empty</h2>
+        <p>Looks like you haven't added any items to your cart yet.</p>
+        <a routerLink="/" class="continue-shopping">
+          <span>←</span> Continue Shopping
+        </a>
+      </div>
+    </ng-template>
+  </div>
+
+  <div class="cart-summary" *ngIf="cart.items.length > 0">
+    <h2>Order Summary</h2>
+    <div class="summary-item">
+      <span>Items ({{cart.totalCount}})</span>
+      <span>${{cart.totalPrice}}</span>
+    </div>
+    <div class="summary-item">
+      <span>Delivery Fee</span>
+      <span>$2.00</span>
+    </div>
+    <div class="summary-item total">
+      <span>Total</span>
+      <span>${{cart.totalPrice + 2}}</span>
+    </div>
+    <button class="checkout-btn" [disabled]="cart.items.length === 0">Proceed to Checkout</button>
+  </div>
+</div>

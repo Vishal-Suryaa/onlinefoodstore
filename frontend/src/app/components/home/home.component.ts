@@ -41,4 +41,9 @@ export class HomeComponent implements OnInit {
       this.router.navigateByUrl('/');
     }
   }
+
+  resetSearch() {
+    this.searchTerm = '';
+    this.router.navigateByUrl('/');
+  }
 }
