@@ -1,0 +1,8 @@
+<div class="tags-list">
+  <a *ngFor="let tag of tags"
+     [routerLink]="['/tag', tag.name]"
+     class="tag-item">
+    {{tag.name}}
+    <span class="tag-count">({{tag.count}})</span>
+  </a>
+</div> 

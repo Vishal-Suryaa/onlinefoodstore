@@ -4,8 +4,11 @@
   align-items: center;
   padding: 1rem 2rem;
   background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   font-family: 'Poppins', sans-serif;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .pointer {
@@ -14,16 +17,17 @@
 
 .logo {
   font-family: 'Playfair Display', serif;
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-weight: 700;
-  color: #ff6b6b;
+  color: #e31837;
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
   letter-spacing: -0.5px;
 }
 
 .logo:hover {
-  color: #ff5252;
+  color: #c41230;
+  transform: scale(1.02);
 }
 
 nav ul {
@@ -31,21 +35,38 @@ nav ul {
   list-style: none;
   margin: 0;
   padding: 0;
-  gap: 2rem;
+  gap: 2.5rem;
+  align-items: center;
 }
 
 nav a {
   text-decoration: none;
-  color: #333;
+  color: #2d3436;
   font-weight: 500;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
   cursor: pointer;
-  font-size: 0.95rem;
+  font-size: 1rem;
   letter-spacing: 0.2px;
+  position: relative;
 }
 
 nav a:hover {
-  color: #ff6b6b;
+  color: #e31837;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: #e31837;
+  transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+  width: 100%;
 }
 
 .menu-container {
@@ -58,10 +79,11 @@ nav a:hover {
   top: 100%;
   right: 0;
   background-color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
-  padding: 0.5rem 0;
-  min-width: 150px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 0.75rem 0;
+  min-width: 180px;
+  margin-top: 0.5rem;
 }
 
 .menu-container:hover .menu {
@@ -70,22 +92,29 @@ nav a:hover {
 }
 
 .menu a {
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1.25rem;
   white-space: nowrap;
+  transition: all 0.2s ease;
 }
 
 .menu a:hover {
   background-color: #f8f9fa;
+  color: #e31837;
 }
 
 .cart-count {
-  background-color: #ff6b6b;
+  background-color: #e31837;
   color: white;
-  padding: 0.2rem 0.5rem;
+  padding: 0.25rem 0.6rem;
   border-radius: 50%;
-  font-size: 0.75rem;
-  margin-left: 0.3rem;
+  font-size: 0.8rem;
+  margin-left: 0.4rem;
   font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.cart-count:hover {
+  transform: scale(1.1);
 }
 
 @media (max-width: 768px) {
@@ -94,6 +123,10 @@ nav a:hover {
   }
   
   nav ul {
-    gap: 1rem;
+    gap: 1.5rem;
+  }
+  
+  .logo {
+    font-size: 1.6rem;
   }
 }

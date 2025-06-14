@@ -10,4 +10,8 @@ export const routes: Routes = [
     path: 'search/:searchTerm',
     component: HomeComponent,
   },
+  {
+    path: 'tag/:tag',
+    component: HomeComponent,
+  },
 ];

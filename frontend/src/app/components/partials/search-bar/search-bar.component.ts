@@ -15,8 +15,8 @@ export class SearchBarComponent {
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {
     this.activatedRoute.params.subscribe(params => {
-      if (params['searchTerm']) {
-        this.searchTerm = params['searchTerm'];
+      if (params.searchTerm) {
+        this.searchTerm = params.searchTerm;
       }
     });
   }
