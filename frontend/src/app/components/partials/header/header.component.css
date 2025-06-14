@@ -1,0 +1,99 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: 'Poppins', sans-serif;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ff6b6b;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  letter-spacing: -0.5px;
+}
+
+.logo:hover {
+  color: #ff5252;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 2rem;
+}
+
+nav a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  cursor: pointer;
+  font-size: 0.95rem;
+  letter-spacing: 0.2px;
+}
+
+nav a:hover {
+  color: #ff6b6b;
+}
+
+.menu-container {
+  position: relative;
+}
+
+.menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  padding: 0.5rem 0;
+  min-width: 150px;
+}
+
+.menu-container:hover .menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu a {
+  padding: 0.5rem 1rem;
+  white-space: nowrap;
+}
+
+.menu a:hover {
+  background-color: #f8f9fa;
+}
+
+.cart-count {
+  background-color: #ff6b6b;
+  color: white;
+  padding: 0.2rem 0.5rem;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  margin-left: 0.3rem;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+  
+  nav ul {
+    gap: 1rem;
+  }
+}

@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  </head>
+  <div class="container">
+    <a routerLink="/" class="logo pointer">Food Mine!</a>
+    <nav>
+      <ul>
+        <li><a routerLink="/login" class="pointer">Login</a></li>
+        <li class="menu-container">
+          <a routerLink="/dashboard" class="pointer">Vishal</a>
+          <div class="menu">
+            <a routerLink="/profile" class="pointer">Profile</a>
+            <a routerLink="/orders" class="pointer">Orders</a>
+            <a routerLink="/logout" class="pointer">Logout</a>
+          </div>
+        </li>
+        <li>
+          <a routerLink="/cart" class="pointer">Cart <span class="cart-count">0</span></a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</html>
