@@ -1,0 +1,50 @@
+<div class="container" *ngIf="food">
+  <button class="back-button" routerLink="/">
+    <i class="fa-solid fa-arrow-left"></i> Back to Menu
+  </button>
+  
+  <div class="food-detail">
+    <div class="image-container">
+      <img [src]="food.imageUrl" [alt]="food.name">
+    </div>
+    
+    <div class="details">
+      <div class="header">
+        <h1>{{food.name}}</h1>
+        <div class="stars">
+          <span class="star">★</span>
+          <span>{{food.stars}}</span>
+        </div>
+      </div>
+
+      <div class="tags">
+        <span class="tag" *ngFor="let tag of food.tags">{{tag}}</span>
+      </div>
+
+      <div class="info">
+        <div class="info-item">
+          <span class="label">Price:</span>
+          <span class="value">${{food.price}}</span>
+        </div>
+        <div class="info-item">
+          <span class="label">Cook Time:</span>
+          <span class="value">{{food.cookTime}} mins</span>
+        </div>
+        <div class="info-item">
+          <span class="label">Origin:</span>
+          <span class="value">{{food.origins.join(', ')}}</span>
+        </div>
+      </div>
+
+      <div class="quantity-selector">
+        <button (click)="decrementQuantity()">-</button>
+        <span>{{quantity}}</span>
+        <button (click)="incrementQuantity()">+</button>
+      </div>
+
+      <button class="add-to-cart" (click)="addToCart()">
+        Add to Cart - ${{food.price * quantity}}
+      </button>
+    </div>
+  </div>
+</div>
