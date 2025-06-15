@@ -123,3 +123,20 @@ export const sample_tags: any[] = [
   { name: 'Seafood', count: 2 },
   { name: 'Healthy', count: 1 }
 ]
+
+export const sample_users: any[] = [
+  {
+    name: "John Doe",
+    email: "vishalm@liftoffllc.com",
+    password: "12345",
+    address: "123 Main St, Anytown, USA",
+    isAdmin: true,
+  }, 
+  {
+    name: "John Doe 1",
+    email: "vishalm+1@liftoffllc.com",
+    password: "12345",
+    address: "123 Main St, Anytown, USA",
+    isAdmin: false,
+  }
+]
