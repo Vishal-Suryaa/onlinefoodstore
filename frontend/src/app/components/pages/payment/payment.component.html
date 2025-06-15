@@ -1,0 +1,52 @@
+<div class="payment-main-container">
+  <div class="row gx-5 gy-4 align-items-start">
+    <!-- Order Summary -->
+    <div class="col-lg-6">
+      <div class="card order-summary-card">
+        <div class="card-body">
+          <h2 class="section-title">Order Summary</h2>
+          <div class="summary-info mb-4">
+            <div><span class="label">Name:</span> <span class="value">{{order.name}}</span></div>
+            <div><span class="label">Address:</span> <span class="value">{{order.address}}</span></div>
+          </div>
+          <div class="order-items-table-wrapper">
+            <div class="order-items-title">Order Items:</div>
+            <table class="order-items-table">
+              <tbody>
+                <tr *ngFor="let item of order.items">
+                  <td class="item-img"><img [src]="item.food.imageUrl" alt="{{item.food.name}}" /></td>
+                  <td class="item-name">{{item.food.name}}</td>
+                  <td class="item-price">${{item.food.price.toFixed(2)}}</td>
+                  <td class="item-qty">{{item.quantity}}</td>
+                  <td class="item-subtotal">${{(item.food.price * item.quantity).toFixed(2)}}</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="4" class="order-total-label">Total :</td>
+                  <td class="order-total-value">${{order.totalPrice.toFixed(2)}}</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Shipping Address (Map) -->
+    <div class="col-lg-6">
+      <div class="card shipping-map-card">
+        <div class="card-body">
+          <h2 class="section-title">Shipping Address</h2>
+          <div class="shipping-map-wrapper">
+            <app-map [order]="order" [readonly]="true"></app-map>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Payment Buttons -->
+  <div class="payment-buttons-wrapper">
+    <button class="btn-paypal"><i class="fab fa-paypal"></i> PayPal</button>
+    <button class="btn-card"><i class="fas fa-credit-card"></i> Debit or Credit Card</button>
+  </div>
+</div>

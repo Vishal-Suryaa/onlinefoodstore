@@ -22,4 +22,13 @@ router.post("/create", asyncHandler(async (req: express.Request, res: express.Re
   res.status(HTTP_STATUS.CREATED).send(newOrder);
 }));
 
+router.get("/newOrderForCurrentUser", asyncHandler(async (req: express.Request, res: express.Response) => {
+  const order = await OrderModel.findOne({ user: (req as any).user.id, status: OrderStatus.NEW });
+  if (order) {
+    res.status(HTTP_STATUS.OK).send(order);
+  } else {
+    res.status(HTTP_STATUS.NOT_FOUND).send("No order found");
+  }
+}));
+
 export default router;

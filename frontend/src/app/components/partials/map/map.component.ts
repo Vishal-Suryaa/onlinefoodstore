@@ -1,7 +1,8 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnDestroy, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LatLng, Map, Marker, tileLayer } from 'leaflet';
 import { icon } from 'leaflet';
+import { Order } from '../../../shared/models/order';
 
 @Component({
   selector: 'app-map',
@@ -10,15 +11,23 @@ import { icon } from 'leaflet';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-export class MapComponent implements OnInit, OnDestroy {
-  @Input() initialLatLng: LatLng = new LatLng(51.505, -0.09); // Default to London
+export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
+  @Input() order?: Order;
+  @Input() initialLatLng?: LatLng;
+  @Input() readonly: boolean = false;
   @Output() locationSelected = new EventEmitter<LatLng>();
 
   private map!: Map;
   private marker!: Marker;
 
   ngOnInit(): void {
-    this.initializeMap();
+    // Wait for the view to be initialized
+  }
+
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.initializeMap();
+    }, 0);
   }
 
   ngOnDestroy(): void {
@@ -38,8 +47,11 @@ export class MapComponent implements OnInit, OnDestroy {
       shadowSize: [41, 41]
     });
 
+    // Get the initial position from order or default
+    const initialPosition = this.order?.addressLatLng || this.initialLatLng || new LatLng(51.505, -0.09);
+
     // Initialize map
-    this.map = new Map('map').setView(this.initialLatLng, 13);
+    this.map = new Map('map').setView(initialPosition, 13);
     
     // Add tile layer
     tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -47,9 +59,9 @@ export class MapComponent implements OnInit, OnDestroy {
     }).addTo(this.map);
 
     // Add marker
-    this.marker = new Marker(this.initialLatLng, {
+    this.marker = new Marker(initialPosition, {
       icon: defaultIcon,
-      draggable: true
+      draggable: !this.readonly
     }).addTo(this.map);
 
     // Handle marker drag end
@@ -63,23 +75,25 @@ export class MapComponent implements OnInit, OnDestroy {
       this.locationSelected.emit(position);
     });
 
-    // Handle map click
-    this.map.on('click', (e) => {
-      const position = e.latlng;
-      console.log('Map clicked at:', {
-        latitude: position.lat,
-        longitude: position.lng,
-        position: position
+    // Handle map click only if not readonly
+    if (!this.readonly) {
+      this.map.on('click', (e) => {
+        const position = e.latlng;
+        console.log('Map clicked at:', {
+          latitude: position.lat,
+          longitude: position.lng,
+          position: position
+        });
+        this.marker.setLatLng(position);
+        this.locationSelected.emit(position);
       });
-      this.marker.setLatLng(position);
-      this.locationSelected.emit(position);
-    });
+    }
 
     // Log initial position
     console.log('Initial map position:', {
-      latitude: this.initialLatLng.lat,
-      longitude: this.initialLatLng.lng,
-      position: this.initialLatLng
+      latitude: initialPosition.lat,
+      longitude: initialPosition.lng,
+      position: initialPosition
     });
   }
 

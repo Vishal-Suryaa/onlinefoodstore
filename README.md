@@ -145,7 +145,7 @@
          3. Add Html
          4. Add CSS
       4. Add Auth Guard
-7. Save Order
+18. Save Order
    1. Add Order Model
    2. Add Order Status enum
    3. Add Auth Middleware
@@ -155,3 +155,18 @@
    6. Add Order Service
      1. Add Create Method
    7. Add Auth Interceptor
+19. Payment Page
+   1. Generate Component
+   2. Add 'getOrderForCurrentUser' api 
+   3. Add Order Service Method
+   4. Connect Component to service
+   5. Make the map component readonly
+20. Adding Paypal
+   1. Generate Component
+     1. Add to payment page
+   2. Get paypal client id
+   3. Add Paypal JS to index.html
+   4. Set up paypal button
+   5. Add Pay Api to order router
+   6. Get Paypal sandbox account
+

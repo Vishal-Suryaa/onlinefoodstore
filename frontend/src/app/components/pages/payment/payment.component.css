@@ -1,0 +1,177 @@
+.payment-main-container {
+  max-width: 1100px;
+  margin: 1.2rem auto;
+  padding: 0 0.5rem 1.2rem 0.5rem;
+}
+
+.section-title {
+  font-size: 1.18rem;
+  font-weight: 700;
+  color: #22304a;
+  margin-bottom: 1rem;
+}
+
+.card {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(44, 62, 80, 0.06);
+  background: #fff;
+  margin-bottom: 0.8rem;
+}
+
+.order-summary-card, .shipping-map-card {
+  min-height: unset;
+  margin-bottom: 0.8rem;
+}
+
+.summary-info {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+.summary-info .label {
+  font-weight: 500;
+  color: #444;
+  margin-right: 0.3rem;
+}
+.summary-info .value {
+  color: #222;
+}
+
+.order-items-table-wrapper {
+  background: #f7f8fa;
+  border-radius: 8px;
+  padding: 0.7rem 0.5rem 0.5rem 0.5rem;
+  box-shadow: none;
+}
+.order-items-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #6a6a6a;
+  margin-bottom: 0.5rem;
+}
+.order-items-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 0.2rem;
+  background: transparent;
+}
+.order-items-table td {
+  padding: 0.3rem 0.3rem;
+  vertical-align: middle;
+  font-size: 0.98rem;
+  color: #333;
+}
+.item-img img {
+  width: 38px;
+  height: 38px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #eee;
+  background: #fff;
+}
+.item-name {
+  font-weight: 500;
+}
+.item-price, .item-subtotal {
+  color: #2ecc71;
+  font-weight: 500;
+  text-align: right;
+}
+.item-qty {
+  text-align: center;
+}
+.order-total-label {
+  text-align: right;
+  font-weight: 600;
+  color: #555;
+  font-size: 1rem;
+  padding-right: 0.5rem;
+}
+.order-total-value {
+  color: #2ecc71;
+  font-weight: 700;
+  font-size: 1.05rem;
+  text-align: right;
+}
+
+.shipping-map-card {
+  min-height: unset;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-bottom: 0.8rem;
+}
+.shipping-map-wrapper {
+  margin-top: 0.5rem;
+}
+.shipping-map-wrapper app-map {
+  display: block;
+  width: 100%;
+  min-height: 220px;
+  max-height: 320px;
+}
+
+.payment-buttons-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.7rem;
+  margin: 1.2rem auto 0 auto;
+  max-width: 400px;
+}
+.btn-paypal, .btn-card {
+  width: 100%;
+  max-width: 320px;
+  padding: 0.7rem 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: box-shadow 0.2s, background 0.2s;
+  box-shadow: 0 1px 4px rgba(44, 62, 80, 0.04);
+  cursor: pointer;
+}
+.btn-paypal {
+  background: #ffc439;
+  color: #253b80;
+}
+.btn-paypal:hover {
+  background: #ffb347;
+  box-shadow: 0 2px 8px rgba(44, 62, 80, 0.10);
+}
+.btn-card {
+  background: #222;
+  color: #fff;
+}
+.btn-card:hover {
+  background: #444;
+  box-shadow: 0 2px 8px rgba(44, 62, 80, 0.10);
+}
+
+@media (max-width: 991px) {
+  .row.gx-5 > [class^='col-'] {
+    margin-bottom: 1.2rem;
+  }
+}
+@media (max-width: 767px) {
+  .payment-main-container {
+    padding: 0.2rem;
+  }
+  .order-summary-card, .shipping-map-card {
+    min-height: unset;
+  }
+  .payment-buttons-wrapper {
+    margin-top: 0.7rem;
+    max-width: 100%;
+  }
+  .btn-paypal, .btn-card {
+    max-width: 100%;
+    font-size: 0.98rem;
+    padding: 0.6rem 0;
+  }
+}
