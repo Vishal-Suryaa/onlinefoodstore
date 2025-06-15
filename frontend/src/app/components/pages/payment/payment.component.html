@@ -46,7 +46,8 @@
   </div>
   <!-- Payment Buttons -->
   <div class="payment-buttons-wrapper">
-    <button class="btn-paypal"><i class="fab fa-paypal"></i> PayPal</button>
-    <button class="btn-card"><i class="fas fa-credit-card"></i> Debit or Credit Card</button>
+    <!-- <button class="btn-paypal"><i class="fab fa-paypal"></i> PayPal</button>
+    <button class="btn-card"><i class="fas fa-credit-card"></i> Debit or Credit Card</button> -->
+    <app-paypal-button [order]="order"></app-paypal-button>
   </div>
 </div>

@@ -23,7 +23,7 @@ router.post("/create", asyncHandler(async (req: express.Request, res: express.Re
 }));
 
 router.get("/newOrderForCurrentUser", asyncHandler(async (req: express.Request, res: express.Response) => {
-  const order = await OrderModel.findOne({ user: (req as any).user.id, status: OrderStatus.NEW });
+  const order = await getNewOrderForCurrentUser(req);
   if (order) {
     res.status(HTTP_STATUS.OK).send(order);
   } else {
@@ -31,4 +31,21 @@ router.get("/newOrderForCurrentUser", asyncHandler(async (req: express.Request, 
   }
 }));
 
+router.post("/pay", asyncHandler(async (req: express.Request, res: express.Response) => {
+  const { paymentId } = req.body;
+  const order = await getNewOrderForCurrentUser(req);
+  if (!order) {
+    res.status(HTTP_STATUS.NOT_FOUND).send("Order not found");
+    return;
+  }
+  order.paymentId = paymentId;
+  order.status = OrderStatus.SUCCESS;
+  await order.save();
+  res.status(HTTP_STATUS.OK).send(order.id);
+}));
+
 export default router;
+
+function getNewOrderForCurrentUser(req: express.Request) {
+  return OrderModel.findOne({ user: (req as any).user.id, status: OrderStatus.NEW });
+}

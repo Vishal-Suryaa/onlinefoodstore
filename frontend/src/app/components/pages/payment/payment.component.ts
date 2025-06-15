@@ -4,11 +4,12 @@ import { ActivatedRoute } from '@angular/router';
 import { OrderService } from '../../../services/order.service';
 import { Order } from '../../../shared/models/order';
 import { MapComponent } from '../../../components/partials/map/map.component';
+import { PaypalButtonComponent } from "../../partials/paypal-button/paypal-button.component";
 
 @Component({
   selector: 'app-payment',
   standalone: true,
-  imports: [CommonModule, MapComponent],
+  imports: [CommonModule, MapComponent, PaypalButtonComponent],
   templateUrl: './payment.component.html',
   styleUrl: './payment.component.css'
 })

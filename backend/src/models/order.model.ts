@@ -31,6 +31,7 @@ export interface Order {
   name: string;
   address: string;
   addressLatLng: LatLng;
+  paymentId?: string;
   status: OrderStatus;
   user: Types.ObjectId;
   updatedAt: Date;
