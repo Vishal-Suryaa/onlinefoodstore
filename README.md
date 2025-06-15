@@ -58,3 +58,18 @@
       2. Add ts  
       3. Add html  
       4. Add css
+10. Connect To Backend  
+   1. Create backend folder  
+   2. npm init  
+   3. npm install typescript  
+   4. Create tsconfig.json  
+   5. Create .gitignore  
+   6. Copy data.ts to backend/src  
+   7. npm install express cors  
+   8. Create server.ts  
+      1. install @types  
+      2. Add Apis  
+   9. npm install nodemon ts-node --save-dev  
+  10. Add urls.ts to frontend  
+  11. Add HttpClient module  
+  12. Update food service

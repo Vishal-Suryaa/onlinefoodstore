@@ -25,11 +25,17 @@ export class HomeComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       if (params.searchTerm) {
         this.searchTerm = params.searchTerm;
-        this.foods = this.foodService.getAllFoodsBySearchTerm(this.searchTerm);
+        this.foodService.getAllFoodsBySearchTerm(this.searchTerm).subscribe(serverFoods => {
+          this.foods = serverFoods;
+        });
       } else if (params.tag) {
-        this.foods = this.foodService.getAllFoodsByTag(params.tag);
+        this.foodService.getAllFoodsByTag(params.tag).subscribe(serverFoods => {
+          this.foods = serverFoods;
+        });
       } else {
-        this.foods = this.foodService.getAll();
+        this.foodService.getAll().subscribe(serverFoods => {
+          this.foods = serverFoods;
+        });
       }
     });
   }
