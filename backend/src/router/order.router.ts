@@ -32,6 +32,7 @@ router.get("/newOrderForCurrentUser", asyncHandler(async (req: express.Request, 
 }));
 
 router.post("/pay", asyncHandler(async (req: express.Request, res: express.Response) => {
+  console.log('Pay request', req.body);
   const { paymentId } = req.body;
   const order = await getNewOrderForCurrentUser(req);
   if (!order) {
@@ -41,7 +42,16 @@ router.post("/pay", asyncHandler(async (req: express.Request, res: express.Respo
   order.paymentId = paymentId;
   order.status = OrderStatus.SUCCESS;
   await order.save();
-  res.status(HTTP_STATUS.OK).send(order.id);
+  res.status(HTTP_STATUS.OK).json({ id: order.id });
+}));
+
+router.get("/track/:id", asyncHandler(async (req: express.Request, res: express.Response) => {
+  const order = await OrderModel.findById(req.params.id);
+  if (order) {
+    res.status(HTTP_STATUS.OK).send(order);
+  } else {
+    res.status(HTTP_STATUS.NOT_FOUND).send("Order not found");
+  }
 }));
 
 export default router;

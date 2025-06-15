@@ -1,0 +1,86 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <div class="tracking-card">
+        <div class="tracking-header">
+          <h2>Order Tracking</h2>
+          <div class="order-number">Order #{{order?.id}}</div>
+          <div class="order-date" *ngIf="order">
+            <i class="far fa-calendar-alt"></i>
+            {{order.createdAt | date:'medium'}}
+          </div>
+        </div>
+
+        <div class="tracking-body" *ngIf="order">
+          <!-- Order Status -->
+          <div class="status-badge" [ngClass]="{
+            'status-success': order.status === 'SUCCESS',
+            'status-pending': order.status === 'NEW',
+            'status-failed': order.status === 'FAILED'
+          }">
+            {{order.status}}
+          </div>
+
+          <!-- Order Details -->
+          <div class="order-details">
+            <div class="section-title">
+              <i class="fas fa-receipt"></i>
+              <span>Order Details</span>
+            </div>
+            <div class="items-table">
+              <div class="table-header">
+                <div class="col-item">Item</div>
+                <div class="col-quantity">Quantity</div>
+                <div class="col-price">Price</div>
+              </div>
+              <div class="table-body">
+                <div class="table-row" *ngFor="let item of order.items">
+                  <div class="col-item">
+                    <div class="item-details">
+                      <div class="item-image">
+                        <img [src]="item.food.imageUrl" [alt]="item.food.name">
+                      </div>
+                      <div class="item-name">{{item.food.name}}</div>
+                    </div>
+                  </div>
+                  <div class="col-quantity">{{item.quantity}}</div>
+                  <div class="col-price">${{item.price}}</div>
+                </div>
+              </div>
+              <div class="table-footer">
+                <div class="total-row">
+                  <span>Total Amount</span>
+                  <span class="total-price">${{order.totalPrice}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Delivery Information -->
+          <div class="delivery-info">
+            <div class="section-title">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Delivery Information</span>
+            </div>
+            <div class="info-card">
+              <div class="info-row">
+                <span class="info-label">Delivery Address</span>
+                <span class="info-value">{{order.address}}</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Payment ID</span>
+                <span class="info-value">{{order.paymentId}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Loading State -->
+        <div class="tracking-body loading-state" *ngIf="!order">
+          <div class="spinner"></div>
+          <p>Loading order information...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -45,6 +45,7 @@ export const OrderSchema = new Schema<Order>({
   items: { type: [OrderItemSchema], required: true },
   totalPrice: { type: Number, required: true },
   status: { type: String, default: OrderStatus.NEW },
+  paymentId: { type: String },
   user: { type: Schema.Types.ObjectId, required: true },
   updatedAt: { type: Date, default: Date.now },
   createdAt: { type: Date, default: Date.now },

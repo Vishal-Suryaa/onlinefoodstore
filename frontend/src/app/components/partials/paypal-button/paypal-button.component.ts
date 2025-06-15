@@ -43,19 +43,23 @@ export class PaypalButtonComponent implements OnInit {
       },
       onApprove: async (data: any, actions: any) => {
         const payment = await actions.order.capture();
+        console.log('payment', payment);
         this.order.paymentId = payment.id;
+
         this.orderService.pay(this.order).subscribe({
-          next: (orderId) => {
+          next: (orderId: any) => {
             this.cartService.clearCart();
-            this.router.navigateByUrl('/track/' + orderId);
+            this.router.navigateByUrl('/track/' + orderId?.id);
             this.toastr.success('Payment successful', 'Success');
           },
           error: (errorResponse: any) => {
             this.toastr.error(errorResponse.error, 'Payment failed');
+            console.log('errorResponse', errorResponse);
           },
         });
       },
       onError: (error: any) => {
+        console.log('error', error);
         this.toastr.error(error.message, 'Payment failed');
       },
     }).render('#paypal-button-container');

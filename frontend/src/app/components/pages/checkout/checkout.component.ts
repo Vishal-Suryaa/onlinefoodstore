@@ -47,6 +47,7 @@ export class CheckoutComponent implements OnInit {
       this.toastr.error('Please select a location on the map');
       return;
     }
+    console.log('Checkout payload', payload);
     this.orderService.create(payload).subscribe({
       next: (order) => {
         this.router.navigateByUrl(`/payment?orderId=${order.id}`);

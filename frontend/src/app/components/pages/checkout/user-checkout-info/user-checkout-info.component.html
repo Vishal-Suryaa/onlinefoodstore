@@ -26,83 +26,8 @@
       <p class="map-help">Click on the map or drag the marker to set your delivery location</p>
     </div>
 
-    <div class="form-row">
-      <div class="form-group">
-        <label for="city">City</label>
-        <input type="text" id="city" formControlName="city" placeholder="City">
-        <div class="error" *ngIf="checkoutForm.get('city')?.invalid && checkoutForm.get('city')?.touched">
-          City is required
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="state">State</label>
-        <input type="text" id="state" formControlName="state" placeholder="State">
-        <div class="error" *ngIf="checkoutForm.get('state')?.invalid && checkoutForm.get('state')?.touched">
-          State is required
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="zipCode">ZIP Code</label>
-        <input type="text" id="zipCode" formControlName="zipCode" placeholder="ZIP Code">
-        <div class="error" *ngIf="checkoutForm.get('zipCode')?.invalid && checkoutForm.get('zipCode')?.touched">
-          Valid ZIP code is required
-        </div>
-      </div>
-    </div>
-
-    <h2>Payment Information</h2>
-    <div class="form-group">
-      <label for="cardNumber">Card Number</label>
-      <input 
-        type="text" 
-        id="cardNumber" 
-        formControlName="cardNumber" 
-        placeholder="1234 5678 9012 3456"
-        (input)="formatCardNumber($event)"
-        maxlength="19">
-      <div class="error" *ngIf="checkoutForm.get('cardNumber')?.invalid && checkoutForm.get('cardNumber')?.touched">
-        Valid card number is required (16 digits)
-      </div>
-    </div>
-
-    <div class="form-row">
-      <div class="form-group">
-        <label for="expiryDate">Expiry Date</label>
-        <input 
-          type="text" 
-          id="expiryDate" 
-          formControlName="expiryDate" 
-          placeholder="MM/YY"
-          (input)="formatExpiryDate($event)"
-          maxlength="5"
-          [class.error-input]="isExpired">
-        <div class="error" *ngIf="checkoutForm.get('expiryDate')?.invalid && checkoutForm.get('expiryDate')?.touched">
-          Valid expiry date is required (MM/YY)
-        </div>
-        <div class="error" *ngIf="isExpired">
-          Card has expired
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="cvv">CVV</label>
-        <input 
-          type="text" 
-          id="cvv" 
-          formControlName="cvv" 
-          placeholder="123"
-          (input)="formatCVV($event)"
-          maxlength="3">
-        <div class="error" *ngIf="checkoutForm.get('cvv')?.invalid && checkoutForm.get('cvv')?.touched">
-          Valid CVV is required (3 digits)
-        </div>
-      </div>
-    </div>
-
-    <button type="submit" [disabled]="checkoutForm.invalid || isExpired" class="submit-button">
-      Go to Payment
+    <button type="submit" [disabled]="checkoutForm.invalid" class="submit-button">
+      Place Order
     </button>
   </form>
 </div> 
