@@ -12,7 +12,7 @@ export class Food {
   cookTime!: string;
 }
 
-const foodSchema = new Schema<Food>({
+export const FoodSchema = new Schema<Food>({
   name: { type: String, required: true },
   price: { type: Number, required: true },
   tags: { type: [String] },
@@ -31,4 +31,4 @@ const foodSchema = new Schema<Food>({
   timestamps: true,
 });
 
-export const FoodModel = model<Food>("Food", foodSchema);
+export const FoodModel = model<Food>("Food", FoodSchema);

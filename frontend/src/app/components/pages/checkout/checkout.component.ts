@@ -5,6 +5,9 @@ import { UserService } from '../../../services/user.service';
 import { User } from '../../../shared/models/user';
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import { UserCheckoutInfoComponent } from './user-checkout-info/user-checkout-info.component';
+import { ToastrService } from 'ngx-toastr';
+import { OrderService } from '../../../services/order.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-checkout',
@@ -20,7 +23,10 @@ export class CheckoutComponent implements OnInit {
 
   constructor(
     private cartService: CartService,
-    private userService: UserService
+    private userService: UserService,
+    private toastr: ToastrService,
+    private orderService: OrderService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -30,10 +36,24 @@ export class CheckoutComponent implements OnInit {
   }
 
   onFormSubmit(formData: any) {
-    console.log('Checkout form submitted:', {
+    
+    const payload = {
       ...formData,
       items: this.cartItems,
       totalPrice: this.totalPrice
+    }
+    console.log('Checkout form submitted:', payload);
+    if(!formData.addressLatLng) {
+      this.toastr.error('Please select a location on the map');
+      return;
+    }
+    this.orderService.create(payload).subscribe({
+      next: (order) => {
+        this.router.navigateByUrl(`/payment?orderId=${order.id}`);
+      },
+      error: (error) => {
+        this.toastr.error(error.message, 'Error');
+      }
     });
   }
 }

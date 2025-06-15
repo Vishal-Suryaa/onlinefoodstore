@@ -51,9 +51,15 @@ router.post("/login", asyncHandler(async (req: express.Request, res: express.Res
 }));
 
 function generateTokenResponse(user: any) {
-  const token = jwt.sign({ email: user.email, isAdmin: user.isAdmin }, "someRandomKey", { expiresIn: "30d" });
-  user.token = token;
-  return user;
+  const token = jwt.sign({ id: user.id, email: user.email, isAdmin: user.isAdmin }, process.env.JWT_SECRET as string, { expiresIn: "30d" });      
+  return {
+    id: user.id,
+    email: user.email,
+    name: user.name,
+    address: user.address,
+    isAdmin: user.isAdmin,
+    token: token
+  };
 }
 
 export default router;

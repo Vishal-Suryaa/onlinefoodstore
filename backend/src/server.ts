@@ -6,7 +6,7 @@ import cors from "cors";
 import foodRouter from "./router/food.router";
 import userRouter from "./router/user.router";
 import { connectToMongoDB } from "./configs/database.config";
-
+import orderRouter from "./router/order.router";
 connectToMongoDB();
 
 const app = express();
@@ -21,6 +21,8 @@ app.use(express.json());
 app.use("/api/foods", foodRouter);
 
 app.use("/api/users", userRouter);
+
+app.use("/api/orders", orderRouter);
 
 const port = 5000;
 app.listen(port, () => {

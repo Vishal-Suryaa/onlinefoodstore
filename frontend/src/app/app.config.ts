@@ -6,13 +6,14 @@ import { provideToastr } from 'ngx-toastr';
 
 import { routes } from './app.routes';
 import { loadingInterceptor } from './shared/interceptors/loading.interceptor';
+import { authInterceptor } from './auth/auth.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }), 
     provideRouter(routes),
     provideHttpClient(
-      withInterceptors([loadingInterceptor])
+      withInterceptors([loadingInterceptor, authInterceptor])
     ),
     provideAnimations(),
     provideToastr({
