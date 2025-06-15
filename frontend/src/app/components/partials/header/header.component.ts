@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { CartService } from '../../../services/cart.service';
 import { UserService } from '../../../services/user.service';
 import { User } from '../../../shared/models/user';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -13,9 +14,11 @@ import { User } from '../../../shared/models/user';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   cartCount: number = 0;
   user!: User;
+  private userSubscription!: Subscription;
+  private cartSubscription!: Subscription;
 
   constructor(
     private router: Router,
@@ -24,13 +27,23 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.cartService.getCartObservable().subscribe((cart) => {
+    this.cartSubscription = this.cartService.getCartObservable().subscribe((cart) => {
       this.cartCount = cart.items.length;
     });
 
-    this.userService.userObservable.subscribe((user) => {
+    this.userSubscription = this.userService.userObservable.subscribe((user) => {
       this.user = user;
+      console.log('user', this.user);
     });
+  }
+
+  ngOnDestroy() {
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe();
+    }
+    if (this.cartSubscription) {
+      this.cartSubscription.unsubscribe();
+    }
   }
 
   onLogoClick() {

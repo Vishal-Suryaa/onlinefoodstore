@@ -6,8 +6,8 @@
     <a routerLink="/" (click)="onLogoClick()" class="logo pointer">Food Mine!</a>
     <nav>
       <ul>
-        <li *ngIf="!user.token"><a routerLink="/login" class="pointer">Login</a></li>
-        <li class="menu-container" *ngIf="user.token">
+        <li *ngIf="!user.id"><a routerLink="/login" class="pointer">Login</a></li>
+        <li class="menu-container" *ngIf="user.id">
           <a routerLink="/dashboard" class="pointer">{{user.name}}</a>
           <div class="menu">
             <a routerLink="/profile" class="pointer">Profile</a>
@@ -15,7 +15,7 @@
             <a (click)="logout()" class="pointer">Logout</a>
           </div>
         </li>
-        <li *ngIf="user.token">
+        <li *ngIf="user.id">
           <a routerLink="/cart" class="pointer">Cart <span class="cart-count" *ngIf="cartCount > 0">{{cartCount}}</span></a>
         </li>
       </ul>

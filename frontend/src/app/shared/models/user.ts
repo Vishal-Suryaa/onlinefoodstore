@@ -6,3 +6,10 @@ export interface User {
   token: string;
   isAdmin: boolean;
 }
+
+export interface UserRegister {
+  name: string;
+  email: string;
+  password: string;
+  address: string;
+}

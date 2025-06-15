@@ -92,6 +92,31 @@ button:disabled {
   box-shadow: none;
 }
 
+.auth-link {
+  text-align: center;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+.auth-link p {
+  color: #2d3436;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.auth-link a {
+  color: #e31837;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.auth-link a:hover {
+  color: #c41230;
+  text-decoration: underline;
+}
+
 @media (max-width: 768px) {
   .login-container {
     padding: 1rem;

@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
-import { USER_LOGIN_URL } from '../shared/constants/urls';
-import { User } from '../shared/models/user';
+import { USER_LOGIN_URL, USER_REGISTER_URL } from '../shared/constants/urls';
+import { User, UserRegister } from '../shared/models/user';
 import { UserLogin } from '../shared/interfaces/userLogin';
 import { ToastrService } from 'ngx-toastr';
 
@@ -18,13 +18,16 @@ export class UserService {
     this.userObservable = this.userSubject.asObservable();
   }
 
+  register(userData: UserRegister): Observable<User> {
+    return this.http.post<User>(USER_REGISTER_URL, userData);
+  }
+
   login(userLogin: UserLogin): Observable<User> {
     return this.http.post<User>(USER_LOGIN_URL, userLogin).pipe(
       tap({
         next: (user) => {
           this.userSubject.next(user);
           localStorage.setItem(USER_KEY, JSON.stringify(user));
-          this.toastrService.success(`Welcome to Food App ${user.name}`, 'Login Successful');
         },
         error: (errorResponse) => {
           this.toastrService.error(errorResponse.error, 'Login Failed');

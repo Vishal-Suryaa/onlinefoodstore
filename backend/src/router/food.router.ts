@@ -1,4 +1,4 @@
-import { sample_foods, sample_tags } from "../data";
+import { sample_foods } from "../data";
 import express from "express";
 import { FoodModel } from "../models/food.model";
 import asyncHandler from "express-async-handler";
@@ -34,7 +34,6 @@ router.get("/tags", asyncHandler(async (req: express.Request, res: express.Respo
     { $project: { _id: 0, name: "$_id", count: "$count" } }
   ]).sort({ count: -1 });
   const allTags = { name: "All", count: await FoodModel.countDocuments() };
-  console.log('allTags', allTags);
   tags.unshift(allTags);
   res.send(tags);
 }));
