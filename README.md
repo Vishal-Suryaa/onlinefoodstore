@@ -115,6 +115,11 @@
     2. Add Register Service method
     3. Add Register link
     4. Add Register component
+14. Loading!
+    1. Add Image
+    2. Add Component
+    3. Add Service
+    4. Add interceptor
 
    
 

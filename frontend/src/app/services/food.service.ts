@@ -24,7 +24,9 @@ export class FoodService {
   }
 
   getAllFoodsByTag(tag: string) {
-    return tag === 'All' ? this.getAll() : this.http.get<Food[]>(FOODS_BY_TAG_URL + tag);
+    return tag === 'All' 
+      ? this.getAll() 
+      : this.http.get<Food[]>(FOODS_BY_TAG_URL + tag);
   }
 
   getFoodById(foodId: string) {
