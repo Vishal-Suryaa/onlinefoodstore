@@ -4,6 +4,8 @@ import { FoodDetailComponent } from './components/pages/food-detail/food-detail.
 import { CartPageComponent } from './components/pages/cart-page/cart-page.component';
 import { LoginPageComponent } from './components/pages/login-page/login-page.component';
 import { SignupPageComponent } from './components/pages/signup-page/signup-page.component';
+import { CheckoutComponent } from './components/pages/checkout/checkout.component';
+import { AuthGuard } from './auth/guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -25,6 +27,11 @@ export const routes: Routes = [
   {
     path: 'cart',
     component: CartPageComponent,
+  },
+  {
+    path: 'checkout',
+    component: CheckoutComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'login',

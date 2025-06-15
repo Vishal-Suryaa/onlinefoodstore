@@ -18,6 +18,10 @@ export class UserService {
     this.userObservable = this.userSubject.asObservable();
   }
 
+  get currentUser(): User {
+    return this.userSubject.value;
+  }
+
   register(userData: UserRegister): Observable<User> {
     return this.http.post<User>(USER_REGISTER_URL, userData);
   }
@@ -61,5 +65,9 @@ export class UserService {
       token: '',
       isAdmin: false,
     };
+  }
+
+  isAuthenticated(): boolean {
+    return this.currentUser.id !== '' && this.currentUser.token !== '';
   }
 }

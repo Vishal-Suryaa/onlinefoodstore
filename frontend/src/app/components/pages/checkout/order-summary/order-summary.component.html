@@ -1,0 +1,16 @@
+<div class="order-summary">
+  <h2>Order Summary</h2>
+  <div class="cart-items">
+    <div *ngFor="let item of cartItems" class="cart-item">
+      <img [src]="item.food.imageUrl" [alt]="item.food.name">
+      <div class="item-details">
+        <h3>{{item.food.name}}</h3>
+        <p>Quantity: {{item.quantity}}</p>
+        <p class="price">${{item.price * item.quantity}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="total">
+    <h3>Total: ${{totalPrice}}</h3>
+  </div>
+</div> 

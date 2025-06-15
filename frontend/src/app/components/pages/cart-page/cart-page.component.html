@@ -52,6 +52,6 @@
       <span>Total</span>
       <span>${{cart.totalPrice + 2}}</span>
     </div>
-    <button class="checkout-btn" [disabled]="cart.items.length === 0">Proceed to Checkout</button>
+    <button class="checkout-btn" routerLink="/checkout" [disabled]="cart.items.length === 0">Proceed to Checkout</button>
   </div>
 </div>

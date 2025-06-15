@@ -1,0 +1,13 @@
+<div class="checkout-container">
+  <div class="checkout-content">
+    <app-order-summary 
+      [cartItems]="cartItems"
+      [totalPrice]="totalPrice">
+    </app-order-summary>
+
+    <app-user-checkout-info
+      [user]="user"
+      (formSubmit)="onFormSubmit($event)">
+    </app-user-checkout-info>
+  </div>
+</div>
